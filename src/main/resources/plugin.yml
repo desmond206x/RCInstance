@@ -1,0 +1,13 @@
+name: RCInstance
+main: com.silthus.rcinstance.RCInstance
+version: 1.0
+database: true
+authors:
+  - Silthus
+website: www.raid-craft.de
+description: >
+             Creates instances on diffrent servers by copying maps
+commands:
+    rci:
+        aliases: [instance]
+        description: The RaidCraft Instance plugin.
