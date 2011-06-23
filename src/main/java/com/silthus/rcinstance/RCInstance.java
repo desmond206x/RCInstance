@@ -9,6 +9,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.silthus.rcinstance.commands.CMDInstance;
+import com.silthus.rcinstance.config.Config;
 import com.silthus.rcinstance.listeners.PluginListener;
 import com.silthus.rcinstance.util.CommandManager;
 import com.silthus.rcinstance.util.RCLogger;
@@ -28,6 +29,8 @@ public class RCInstance extends JavaPlugin {
 
 		// Logger
 		RCLogger.initialize(Logger.getLogger("Minecraft"));
+		// Config
+		Config.initialize(this);
 
 		RCLogger.info(name + " version " + version + " is enabled!");
 	}
