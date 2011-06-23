@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.List;
 
 import org.bukkit.util.config.Configuration;
 
@@ -18,6 +20,10 @@ public class Config {
 	protected static String configFileName = "config.yml";
 	private static Configuration config = null;
 	private static File configFile;
+	
+	public static String mainWorld = null;
+	public static List<String> instanceList = null;
+	public static HashMap<Integer, String> instances;
 
 	public static void initialize(RCInstance instance) {
 		Config.plugin = instance;
@@ -74,6 +80,23 @@ public class Config {
 	}
 
 	private static void setup(Configuration file) {
+		mainWorld = file.getString("mainWorld", "world");
+		instanceList = file.getKeys("instances");
+		if (instanceList != null) {
+			int i = 0;
+			for (String s : instanceList) {
+				instances.put(i, s);
+				i++;
+			}
+		}
 		
+	}
+	
+	public static InstanceConfig getInstance(int id) {
+		if (instanceList != null && instances.containsKey(id)) {
+			String name = instances.get(id);
+			return new InstanceConfig(id, name, config);
+		}
+		return null;
 	}
 }
